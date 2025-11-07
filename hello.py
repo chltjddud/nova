@@ -2,11 +2,10 @@ def get_number(prompt):
     """사용자로부터 숫자를 입력받고, 유효한 숫자인지 검사하여 반환합니다."""
     while True:
         try:
-            # 입력받은 문자열을 소수점까지 허용하는 실수(float)로 변환 시도
             return float(input(prompt))
         except ValueError:
-            # 숫자로 변환할 수 없는 입력이 들어오면 오류 메시지 출력 후 다시 입력받기
-            print("❌ 오류: 유효한 숫자만 입력해 주세요.")
+
+            print("오류: 유효한 숫자만 입력해 주세요.")
 
 def get_operator():
     """사용자로부터 유효한 연산자를 입력받아 반환합니다."""
@@ -16,7 +15,7 @@ def get_operator():
         if op in valid_operators:
             return op
         else:
-            print("❌ 오류: 지원하지 않는 연산자입니다. 다시 입력해 주세요.")
+            print("오류: 지원하지 않는 연산자입니다. 다시 입력해 주세요.")
 
 def calculate_result(num1, operator, num2):
     """입력받은 숫자와 연산자로 실제 계산을 수행하고 결과를 반환합니다."""
@@ -28,41 +27,38 @@ def calculate_result(num1, operator, num2):
         return num1 * num2
     elif operator == '/':
         if num2 == 0:
-            # 0으로 나누는 경우 예외 처리
-            print("❌ 오류: 0으로 나눌 수 없습니다!")
+
+            print("오류: 0으로 나눌 수 없습니다!")
             return None
         return num1 / num2
-    # 사실 get_operator() 함수에서 유효성을 이미 검사했기 때문에, 이 부분은 실행되지 않습니다.
+
     return None
 
 def run_calculator():
-    """계산기 프로그램을 실행하고 반복 사용 기능을 제공합니다."""
-    print("====================================")
-    print("✨ 파이썬 콘솔 계산기 프로그램 시작 ✨")
-    print("====================================")
+
 
     while True:
-        # 1. 첫 번째 숫자 입력
+
         num1 = get_number("첫 번째 숫자를 입력하세요: ")
 
-        # 2. 연산자 입력
+
         operator = get_operator()
 
-        # 3. 두 번째 숫자 입력
+
         num2 = get_number("두 번째 숫자를 입력하세요: ")
 
-        # 4. 계산 수행 및 결과 출력
+
         result = calculate_result(num1, operator, num2)
 
         if result is not None:
-            # 결과가 None이 아닌 경우 (즉, 0으로 나누는 오류가 아닌 경우)
-            print(f"\n✅ 계산 결과: {num1} {operator} {num2} = {result}\n")
 
-        # 5. 계속 사용 여부 확인
+            print(f"\n 계산 결과: {num1} {operator} {num2} = {result}\n")
+
+
         continue_calc = input("계속 계산하시겠습니까? (Y/N): ").strip().upper()
         
         if continue_calc != 'Y':
-            print("👋 계산기를 종료합니다. 이용해 주셔서 감사합니다!")
+            print("계산기를 종료합니다. 이용해 주셔서 감사합니다!")
             break
 
 # 계산기 프로그램 시작
